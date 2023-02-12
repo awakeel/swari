@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { OktaAuthService } from '@okta/okta-angular';
+import { AuthService } from './core.service';
 
 @Component({
   selector: 'app-root',
@@ -8,23 +8,23 @@ import { OktaAuthService } from '@okta/okta-angular';
 })
 export class AppComponent implements OnInit {
   public title = 'My Business Ledger';
-  public isAuthenticated: boolean;
+  public isAuthenticated: any;
 
-  constructor(public oktaAuth: OktaAuthService) {
-    this.oktaAuth.$authenticationState.subscribe(
-      (isAuthenticated: boolean) => this.isAuthenticated = isAuthenticated
-    );
+  constructor(public authService: AuthService) {
+    // this.authService.$authenticationState.subscribe(
+    //   (isAuthenticated: boolean) => this.isAuthenticated = isAuthenticated
+    // );
   }
 
   async ngOnInit() {
-    this.isAuthenticated = await this.oktaAuth.isAuthenticated();
+    this.isAuthenticated = await this.authService.getAuthToken();
   }
 
   async login() {
-    await this.oktaAuth.signInWithRedirect();
+    //await this.authService.signInWithRedirect();
   }
 
   async logout() {
-    await this.oktaAuth.signOut();
+   // await this.oktaAuth.signOut();
   }
 }

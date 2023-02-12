@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 @Injectable()
 export class AuthService{
-
+ public $authenticationState
  constructor() { }
 
  getAuthToken():string {
@@ -11,7 +11,7 @@ export class AuthService{
  }
 }
 
-
+@Injectable()
 export class AuthInterceptorService implements HttpInterceptor {
     constructor(private authService: AuthService) {} 
    intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {  

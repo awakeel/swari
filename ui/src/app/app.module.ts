@@ -47,8 +47,7 @@ const oktaConfig = {
     MatTableModule,
     MatDividerModule,
     MatProgressSpinnerModule,
-    FormsModule,
-    OktaAuthModule
+    FormsModule
   ],
   providers: [
     AuthService , 

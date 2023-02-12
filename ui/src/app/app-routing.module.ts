@@ -13,10 +13,6 @@ const routes: Routes = [
     path: 'products',
     component: ProductsComponent,
     canActivate: [OktaAuthGuard]
-  },
-  {
-    path: 'callback',
-    component: OktaCallbackComponent
   }
 ];
 
