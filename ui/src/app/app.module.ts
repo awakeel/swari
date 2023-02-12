@@ -2,6 +2,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import {HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthInterceptorService, AuthService}  from './core.service'
 import {
   MatButtonModule,
   MatDividerModule,
@@ -49,7 +51,12 @@ const oktaConfig = {
     OktaAuthModule
   ],
   providers: [
-    { provide: OKTA_CONFIG, useValue: oktaConfig }
+    AuthService , 
+    {
+     provide: HTTP_INTERCEPTORS,
+     useClass: AuthInterceptorService,
+     multi: true
+    },
   ],
   bootstrap: [AppComponent]
 })
